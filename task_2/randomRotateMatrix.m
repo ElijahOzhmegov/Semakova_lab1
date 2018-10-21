@@ -47,33 +47,37 @@ plot3(0, 0, 0, 'Color', 'k', 'Marker', '*');
 
 v = [XrndVec(end); YrndVec(end); ZrndVec(end)];
 
-theta = pi/3;%rand(1)*2*pi;
-
 % u = [rand(1) rand(1) rand(1)];
-u = [0 0 1];
 % u = u/norm(u);
+u = [0 0 1];
 
-q_r = cos(theta/2);
-q_i = u(1)*sin(theta/2);
-q_j = u(2)*sin(theta/2);
-q_k = u(3)*sin(theta/2);
+theta0 = rand(1)*2*pi;
 
-R = [1 - 2*(q_j^2 + q_k^2) 2*(q_i*q_j - q_k*q_r) 2*(q_i*q_k + q_j*q_r);
-     2*(q_i*q_j + q_k*q_r) 1 - 2*(q_i^2 + q_k^2) 2*(q_j*q_k - q_i*q_r);
-     2*(q_i*q_k + q_j*q_r) 2*(q_j*q_k + q_i*q_r) 1 - 2*(q_i^2 + q_j^2)];
+h = animatedline;
 
+R = R_matrix(u, theta0);
+    
 new_v = R*v;
 
 XnewVec = [0 new_v(1)];
 YnewVec = [0 new_v(2)];
 ZnewVec = [0 new_v(3)];
 
+plot3(XnewVec, YnewVec, ZnewVec,':'), hold on;
+
+for theta = linspace(0,theta0, 300);
+    R = R_matrix(u, theta);
+    
+    new_v = R*v;
+    
+    addpoints(h, new_v(1),new_v(2),new_v(3));
+    drawnow
+end 
+
 line = addText(XrndVec, ZrndVec, ZrndVec);
 text(XrndVec(end),YrndVec(end),ZrndVec(end), line);
 
 line = addText(XnewVec, YnewVec, ZnewVec);
 text(XnewVec(end),YnewVec(end),ZnewVec(end), line);
-
-plot3(XnewVec, YnewVec, ZnewVec,':'), hold on;
 
 
