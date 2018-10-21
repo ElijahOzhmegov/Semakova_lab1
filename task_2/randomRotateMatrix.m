@@ -47,13 +47,12 @@ plot3(0, 0, 0, 'Color', 'k', 'Marker', '*');
 
 v = [XrndVec(end); YrndVec(end); ZrndVec(end)];
 
-% u = [rand(1) rand(1) rand(1)];
-% u = u/norm(u);
-u = [0 0 1];
+u = [rand(1) rand(1) rand(1)];
+u = u/norm(u);
 
 theta0 = rand(1)*2*pi;
 
-h = animatedline;
+h = animatedline; % because I can
 
 R = R_matrix(u, theta0);
     
@@ -65,7 +64,7 @@ ZnewVec = [0 new_v(3)];
 
 plot3(XnewVec, YnewVec, ZnewVec,':'), hold on;
 
-for theta = linspace(0,theta0, 300);
+for theta = linspace(0,theta0, 300); % because I can
     R = R_matrix(u, theta);
     
     new_v = R*v;
