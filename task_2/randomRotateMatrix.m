@@ -78,5 +78,3 @@ text(XrndVec(end),YrndVec(end),ZrndVec(end), line);
 
 line = addText(XnewVec, YnewVec, ZnewVec);
 text(XnewVec(end),YnewVec(end),ZnewVec(end), line);
-
-
