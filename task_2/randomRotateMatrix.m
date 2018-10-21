@@ -63,6 +63,7 @@ YnewVec = [0 new_v(2)];
 ZnewVec = [0 new_v(3)];
 
 plot3(XnewVec, YnewVec, ZnewVec,':'), hold on;
+plot3([0 u(1)*10], [0 u(2)*10], [0 u(3)*10],'k'), hold on;
 
 for theta = linspace(0,theta0, 300); % because I can
     R = R_matrix(u, theta);
